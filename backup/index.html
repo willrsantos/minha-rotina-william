@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planner de Rotina Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased text-slate-800">
+
+    <!-- Barra de Data Fixa -->
+    <div id="date-bar" class="sticky top-0 z-50 bg-white shadow-md border-b border-slate-200">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-2xl">📅</span>
+                        <div>
+                            <h1 id="current-date" class="text-lg font-bold text-slate-900"></h1>
+                            <p id="current-weekday" class="text-sm text-slate-600"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div id="progress-summary" class="text-right">
+                        <p id="tasks-completed" class="text-sm font-semibold text-slate-900"></p>
+                        <div class="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
+                            <div id="progress-bar" class="h-full bg-green-500 transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <button id="calendar-toggle" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm font-medium transition-colors">
+                        📅 Calendário
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
+
+            <!-- Container das Tarefas do Dia -->
+            <section id="schedule-container" class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm space-y-4">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 id="schedule-title" class="text-2xl font-bold text-slate-900"></h2>
+                    <div class="flex items-center space-x-2 text-sm text-slate-500">
+                        <span>Total de tarefas:</span>
+                        <span id="total-tasks" class="font-semibold">0</span>
+                    </div>
+                </div>
+                <div id="tasks-list" class="space-y-3">
+                    <!-- Tarefas serão inseridas aqui -->
+                </div>
+            </section>
+
+            <!-- Container do Calendário -->
+            <section id="calendar-container" class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm hidden">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Calendário de Progresso</h2>
+                <div id="calendar-controls" class="flex justify-between items-center mb-4">
+                    <button id="prev-month" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm">← Anterior</button>
+                    <h3 id="current-month" class="text-lg font-semibold"></h3>
+                    <button id="next-month" class="px-3 py-1 bg-slate-100 hover:bg-slate-200 rounded-lg text-sm">Próximo →</button>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-1 text-center">
+                </div>
+                <div class="mt-6 p-4 bg-slate-50 rounded-lg">
+                    <h4 class="font-semibold mb-2">Legenda:</h4>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <div class="flex items-center"><span class="w-4 h-4 bg-green-200 rounded mr-2"></span>1-25% completo</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-green-300 rounded mr-2"></span>26-50% completo</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-green-400 rounded mr-2"></span>51-75% completo</div>
+                        <div class="flex items-center"><span class="w-4 h-4 bg-green-500 rounded mr-2"></span>76-100% completo</div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="space-y-8">
+                <!-- Resumo do Dia -->
+                <section class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-bold mb-4 text-center text-slate-900">Resumo do Dia</h2>
+                    <div class="space-y-4">
+                        <div id="category-progress" class="space-y-3">
+                            <!-- Progresso por categoria será inserido aqui -->
+                        </div>
+                        <div class="pt-4 border-t border-slate-200">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-600">Progresso Geral:</span>
+                                <span id="general-progress" class="font-semibold text-slate-900">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Distribuição Semanal -->
+                <section class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-bold mb-4 text-center text-slate-900">Distribuição Semanal</h2>
+                    <p class="text-center text-slate-600 text-sm mb-4">Veja como seu tempo é investido ao longo da semana.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="weekly-chart"></canvas>
+                    </div>
+                </section>
+
+                <!-- Legenda de Atividades -->
+                <section id="legend" class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-xl font-bold mb-4 text-slate-900">Legenda de Atividades</h2>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-sky-500 mr-3"></span><div><strong class="font-semibold">Foco Profundo:</strong> Trabalho / Estágio</div></li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-emerald-500 mr-3"></span><div><strong class="font-semibold">Estudo Dirigido:</strong> Faculdade / Estágio</div></li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-amber-500 mr-3"></span><div><strong class="font-semibold">Rotina Pessoal:</strong> Organização, Refeições, Cuidados</div></li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-rose-500 mr-3"></span><div><strong class="font-semibold">Movimento:</strong> Academia / Atividade Física</div></li>
+                        <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-violet-500 mr-3"></span><div><strong class="font-semibold">Lazer & Descanso:</strong> Tempo livre, Hobbies, Social</div></li>
+                    </ul>
+                </section>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
