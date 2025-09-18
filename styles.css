@@ -1,119 +1,309 @@
+/* Reset e Base - Mobile First */
+* {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: #f8fafc;
-    padding-top: 0;
+    color: #334155;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
 }
 
-/* Barra de data fixa */
-#date-bar {
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.95);
+/* Safe Area para iPhone */
+@supports(padding: max(0px)) {
+    body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+        padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
 }
 
-.chart-container {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-    height: auto;
-    max-height: 400px;
+/* Header Mobile */
+.header-mobile {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
 }
 
-/* Estilos das tarefas */
+/* Containers */
+.container-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f1f5f9;
+}
+
+/* Task Cards - Nova estrutura */
 .task-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
     border-left: 4px solid transparent;
-    transition: all 0.2s ease-in-out;
-}
-
-.task-card:hover {
-    background-color: #f8fafc;
-    transform: translateX(2px);
-}
-
-.task-card.completed {
-    opacity: 0.7;
-}
-
-.task-card.completed h3 {
-    text-decoration: line-through;
-}
-
-/* Estilos do calendário */
-.calendar-day {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.875rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    min-height: 40px;
-}
-
-.calendar-day:hover {
-    background-color: #f1f5f9;
-}
-
-.calendar-day.other-month {
-    color: #cbd5e1;
-}
-
-.calendar-day.today {
-    background-color: #0284c7;
-    color: white;
-    font-weight: 600;
-}
-
-.calendar-day.has-progress {
-    font-weight: 600;
-}
-
-.calendar-header {
-    font-weight: 600;
-    color: #64748b;
-    padding: 0.5rem;
-    font-size: 0.875rem;
-}
-
-.progress-indicator {
-    position: absolute;
-    bottom: 2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-}
-
-/* Progresso por categoria */
-.category-progress-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-}
-
-.category-progress-bar {
-    width: 60px;
-    height: 6px;
-    background-color: #e2e8f0;
-    border-radius: 3px;
     overflow: hidden;
 }
 
-.category-progress-fill {
-    height: 100%;
-    transition: width 0.3s ease;
+.task-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-card.completed {
+    background-color: #f8fafc;
+    opacity: 0.7;
+}
+
+.task-card.completed .task-title {
+    text-decoration: line-through;
+    color: #64748b;
+}
+
+/* Task Card Layout */
+.task-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+    padding-right: 40px; /* Espaço para o checkbox */
+}
+
+.task-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.task-time {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.task-description {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.4;
+    margin: 8px 0 12px 0;
+    padding-left: 44px; /* Alinha com o ícone */
+    padding-right: 40px; /* Espaço para o checkbox */
+}
+
+.task-category {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 44px; /* Alinha com o ícone */
+}
+
+.task-checkbox {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    accent-color: #3b82f6;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* Task Counter */
+.task-counter {
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Buttons */
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+    background: #2563eb;
+}
+
+.btn-secondary {
+    background: #10b981;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    touch-action: manipulation;
+}
+
+.btn-secondary:active {
+    transform: scale(0.95);
+    background: #059669;
+}
+
+/* Footer Legend */
+.footer-legend {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 32px;
+}
+
+.legend-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-item strong {
+    font-weight: 600;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.legend-item p {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Category Colors */
+.legend-work .legend-dot { background: #3b82f6; }
+.legend-study .legend-dot { background: #10b981; }
+.legend-personal .legend-dot { background: #f59e0b; }
+.legend-movement .legend-dot { background: #ef4444; }
+.legend-leisure .legend-dot { background: #8b5cf6; }
+
+.legend-work strong { color: #1e40af; }
+.legend-study strong { color: #047857; }
+.legend-personal strong { color: #d97706; }
+.legend-movement strong { color: #dc2626; }
+.legend-leisure strong { color: #7c3aed; }
+
+/* Task Category Styles */
+.task-card[data-category="Trabalho"] {
+    border-left-color: #3b82f6;
+}
+
+.task-card[data-category="Estudo"] {
+    border-left-color: #10b981;
+}
+
+.task-card[data-category="Pessoal"] {
+    border-left-color: #f59e0b;
+}
+
+.task-card[data-category="Movimento"] {
+    border-left-color: #ef4444;
+}
+
+.task-card[data-category="Lazer"] {
+    border-left-color: #8b5cf6;
+}
+
+.task-category[data-category="Trabalho"] {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.task-category[data-category="Estudo"] {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.task-category[data-category="Pessoal"] {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.task-category[data-category="Movimento"] {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.task-category[data-category="Lazer"] {
+    background: #ede9fe;
+    color: #7c3aed;
 }
 
 /* Animações */
-@keyframes slideIn {
+@keyframes slideUp {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
@@ -122,29 +312,91 @@ body {
 }
 
 .task-card {
-    animation: slideIn 0.3s ease-out;
+    animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    #date-bar .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
+/* Responsivo - iPhone SE (375px) */
+@media (max-width: 375px) {
+    .px-4 {
+        padding-left: 12px;
+        padding-right: 12px;
     }
     
-    #date-bar .flex {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
+    .container-card {
+        padding: 16px;
     }
     
-    #progress-summary {
-        order: -1;
-        width: 100%;
-        text-align: left;
+    .task-card {
+        padding: 12px;
     }
     
-    .w-24 {
-        width: 100%;
+    .task-description {
+        padding-left: 40px;
+        padding-right: 36px;
+    }
+    
+    .task-category {
+        margin-left: 40px;
+    }
+    
+    .task-checkbox {
+        top: 16px;
+        right: 12px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Responsivo - iPhone 12 Pro Max (428px+) */
+@media (min-width: 428px) {
+    main {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .legend-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Responsivo - Tablet (768px+) */
+@media (min-width: 768px) {
+    main {
+        max-width: 600px;
+        padding: 24px;
+    }
+    
+    .header-mobile .px-4 {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    .footer-legend .px-4 {
+        max-width: 600px;
+        margin: 0 auto;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    
+    .legend-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .calendar-grid {
+        max-width: 500px;
+        margin: 0 auto 16px;
+    }
+}
+
+/* Redução de movimento para acessibilidade */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

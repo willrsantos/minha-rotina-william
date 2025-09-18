@@ -2,10 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Alimentação - Minha Rotina</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .meal-card {
@@ -13,305 +13,294 @@
             border-left: 4px solid;
             transition: all 0.3s ease;
         }
-        .meal-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        .meal-card:active {
+            transform: scale(0.98);
         }
         .food-item {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #e2e8f0;
             transition: all 0.2s ease;
-        }
-        .food-item:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: #cbd5e0;
-        }
-        .day-section {
-            border-radius: 12px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-        <div class="container mx-auto px-4 py-4">
+    <!-- Header Mobile -->
+    <header class="sticky top-0 bg-white shadow-sm border-b border-gray-200 z-50">
+        <div class="px-4 py-3">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                    <a href="index.html" class="text-blue-600 hover:text-blue-700 transition">
-                        ← Voltar para Rotina
-                    </a>
-                    <h1 class="text-2xl font-bold text-gray-800">🍽️ Planejamento Alimentar</h1>
-                </div>
-                <div class="text-sm text-gray-600">
-                    Foco: Ganho de massa magra
+                <a href="index.html" class="text-blue-600 font-medium text-sm">
+                    ← Voltar
+                </a>
+                <h1 class="text-lg font-bold text-gray-800">🍽️ Alimentação</h1>
+                <div class="text-xs text-gray-600">
+                    Massa Magra
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="px-4 py-6">
         <!-- Info Geral -->
-        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
-            <h2 class="text-xl font-semibold mb-4 text-gray-800">📋 Informações Gerais</h2>
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="p-4 bg-blue-50 rounded-lg">
-                    <h3 class="font-medium text-blue-800 mb-2">🎯 Objetivo</h3>
-                    <p class="text-blue-700 text-sm">Ganho de massa magra através de alimentação balanceada e rica em proteínas</p>
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <h2 class="text-lg font-bold mb-3">📋 Objetivo</h2>
+            <div class="space-y-3">
+                <div class="p-3 bg-blue-50 rounded-lg">
+                    <h3 class="font-medium text-blue-800 text-sm mb-1">🎯 Meta</h3>
+                    <p class="text-blue-700 text-sm">Ganho de massa magra com alimentação rica em proteínas</p>
                 </div>
-                <div class="p-4 bg-green-50 rounded-lg">
-                    <h3 class="font-medium text-green-800 mb-2">🍚 Almoço Padrão</h3>
-                    <p class="text-green-700 text-sm">Filé de frango + arroz + acompanhamento variado (decidido no fim de semana)</p>
+                <div class="p-3 bg-green-50 rounded-lg">
+                    <h3 class="font-medium text-green-800 text-sm mb-1">🍚 Padrão</h3>
+                    <p class="text-green-700 text-sm">Frango + arroz + acompanhamento (definido no domingo)</p>
                 </div>
             </div>
         </div>
 
-        <!-- Planejamento Semanal -->
-        <div class="space-y-8">
+        <!-- Planejamento por Dia -->
+        <div class="space-y-6">
             <!-- Segunda-feira -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-                    🌅 Segunda-feira - Home Office
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
+                    🌅 Segunda - Home Office
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <!-- Café da Manhã -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #f59e0b;">
-                        <h3 class="font-semibold text-amber-600 mb-3 flex items-center">
-                            ☕ Café da Manhã (6:30-7:00)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #f59e0b;">
+                        <h3 class="font-medium text-amber-600 mb-2 text-sm">
+                            ☕ Café (6:30-7:00)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Pão + requeijão + peito de peru</div>
-                            <div class="food-item p-2 rounded text-sm">🥛 Iogurte + granola + banana</div>
-                            <div class="food-item p-2 rounded text-sm">☕ Café com leite</div>
-                            <div class="text-xs text-gray-500 mt-2">💪 Rico em proteínas para começar o dia</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Pão + requeijão + peito de peru</div>
+                            <div class="food-item p-2 rounded text-xs">🥛 Iogurte + granola + banana</div>
+                            <div class="food-item p-2 rounded text-xs">☕ Café com leite</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">💪 Rico em proteínas</div>
                     </div>
 
-                    <!-- Lanche da Tarde -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #10b981;">
-                        <h3 class="font-semibold text-green-600 mb-3 flex items-center">
-                            🥗 Lanche da Tarde (16:00-16:30)
+                    <!-- Lanche -->
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #10b981;">
+                        <h3 class="font-medium text-green-600 mb-2 text-sm">
+                            🥗 Lanche (16:00-16:30)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍠 Batata doce assada</div>
-                            <div class="food-item p-2 rounded text-sm">🥚 Ovo cozido</div>
-                            <div class="food-item p-2 rounded text-sm">🍌 Fruta da época</div>
-                            <div class="text-xs text-gray-500 mt-2">⚡ Energia para treino</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍠 Batata doce assada</div>
+                            <div class="food-item p-2 rounded text-xs">🥚 Ovo cozido</div>
+                            <div class="food-item p-2 rounded text-xs">🍌 Fruta da época</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">⚡ Energia para treino</div>
                     </div>
 
                     <!-- Jantar -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #8b5cf6;">
-                        <h3 class="font-semibold text-purple-600 mb-3 flex items-center">
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #8b5cf6;">
+                        <h3 class="font-medium text-purple-600 mb-2 text-sm">
                             🌙 Jantar (20:45-21:15)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🥗 Salada (alface + tomate)</div>
-                            <div class="food-item p-2 rounded text-sm">🍟 Batata na airfryer</div>
-                            <div class="food-item p-2 rounded text-sm">🥚 Omelete simples</div>
-                            <div class="text-xs text-gray-500 mt-2">🌙 Leve para não atrapalhar o sono</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🥗 Salada (alface + tomate)</div>
+                            <div class="food-item p-2 rounded text-xs">🍟 Batata na airfryer</div>
+                            <div class="food-item p-2 rounded text-xs">🥚 Omelete simples</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🌙 Leve para o sono</div>
                     </div>
                 </div>
             </div>
 
             <!-- Terça-feira -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-                    🏢 Terça-feira - Presencial
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
+                    🏢 Terça - Presencial
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <!-- Café da Manhã -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #f59e0b;">
-                        <h3 class="font-semibold text-amber-600 mb-3 flex items-center">
-                            ☕ Café da Manhã (6:30-7:00)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #f59e0b;">
+                        <h3 class="font-medium text-amber-600 mb-2 text-sm">
+                            ☕ Café (6:30-7:00)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Torrada + manteiga + presunto</div>
-                            <div class="food-item p-2 rounded text-sm">🥚 Ovo mexido</div>
-                            <div class="food-item p-2 rounded text-sm">☕ Café preto</div>
-                            <div class="text-xs text-gray-500 mt-2">💼 Energia para dia presencial</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Torrada + manteiga + presunto</div>
+                            <div class="food-item p-2 rounded text-xs">🥚 Ovo mexido</div>
+                            <div class="food-item p-2 rounded text-xs">☕ Café preto</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">💼 Energia para dia presencial</div>
                     </div>
 
                     <!-- Lanche da Tarde -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #10b981;">
-                        <h3 class="font-semibold text-green-600 mb-3 flex items-center">
-                            🎒 Lanche da Tarde (16:00-17:30)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #10b981;">
+                        <h3 class="font-medium text-green-600 mb-2 text-sm">
+                            🎒 Lanche (16:00-17:30)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Pão com ovo (restaurante)</div>
-                            <div class="food-item p-2 rounded text-sm">🍌 Banana (levar de casa)</div>
-                            <div class="food-item p-2 rounded text-sm">🥤 Suco natural</div>
-                            <div class="text-xs text-gray-500 mt-2">🚌 Durante o deslocamento</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Pão com ovo (restaurante)</div>
+                            <div class="food-item p-2 rounded text-xs">🍌 Banana (levar de casa)</div>
+                            <div class="food-item p-2 rounded text-xs">🥤 Suco natural</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🚌 Durante o deslocamento</div>
                     </div>
 
                     <!-- Jantar -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #8b5cf6;">
-                        <h3 class="font-semibold text-purple-600 mb-3 flex items-center">
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #8b5cf6;">
+                        <h3 class="font-medium text-purple-600 mb-2 text-sm">
                             🌙 Jantar (20:45-21:15)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍗 Filé de frango grelhado</div>
-                            <div class="food-item p-2 rounded text-sm">🥗 Salada verde</div>
-                            <div class="food-item p-2 rounded text-sm">🍠 Batata doce</div>
-                            <div class="text-xs text-gray-500 mt-2">💪 Recuperação pós-treino</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍗 Filé de frango grelhado</div>
+                            <div class="food-item p-2 rounded text-xs">🥗 Salada verde</div>
+                            <div class="food-item p-2 rounded text-xs">🍠 Batata doce</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">💪 Recuperação pós-treino</div>
                     </div>
                 </div>
             </div>
 
             <!-- Quarta-feira -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-                    🏠 Quarta-feira - Home Office
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
+                    🏠 Quarta - Home Office
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <!-- Café da Manhã -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #f59e0b;">
-                        <h3 class="font-semibold text-amber-600 mb-3 flex items-center">
-                            ☕ Café da Manhã (6:30-7:00)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #f59e0b;">
+                        <h3 class="font-medium text-amber-600 mb-2 text-sm">
+                            ☕ Café (6:30-7:00)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🧀 Pão de queijo</div>
-                            <div class="food-item p-2 rounded text-sm">🥣 Aveia + banana + granola</div>
-                            <div class="food-item p-2 rounded text-sm">☕ Café com leite</div>
-                            <div class="text-xs text-gray-500 mt-2">🔥 Carboidratos para energia</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🧀 Pão de queijo</div>
+                            <div class="food-item p-2 rounded text-xs">🥣 Aveia + banana + granola</div>
+                            <div class="food-item p-2 rounded text-xs">☕ Café com leite</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🔥 Carboidratos para energia</div>
                     </div>
 
                     <!-- Lanche da Tarde -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #10b981;">
-                        <h3 class="font-semibold text-green-600 mb-3 flex items-center">
-                            🥗 Lanche da Tarde (16:00-16:30)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #10b981;">
+                        <h3 class="font-medium text-green-600 mb-2 text-sm">
+                            🥗 Lanche (16:00-16:30)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Biscoito água e sal + queijo</div>
-                            <div class="food-item p-2 rounded text-sm">🍎 Fruta variada</div>
-                            <div class="food-item p-2 rounded text-sm">🥛 Iogurte</div>
-                            <div class="text-xs text-gray-500 mt-2">🏃 Pré-treino leve</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Biscoito água e sal + queijo</div>
+                            <div class="food-item p-2 rounded text-xs">🍎 Fruta variada</div>
+                            <div class="food-item p-2 rounded text-xs">🥛 Iogurte</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🏃 Pré-treino leve</div>
                     </div>
 
                     <!-- Jantar -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #8b5cf6;">
-                        <h3 class="font-semibold text-purple-600 mb-3 flex items-center">
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #8b5cf6;">
+                        <h3 class="font-medium text-purple-600 mb-2 text-sm">
                             🌙 Jantar (20:45-21:15)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🥗 Salada caprichada</div>
-                            <div class="food-item p-2 rounded text-sm">🥚 Ovos mexidos</div>
-                            <div class="food-item p-2 rounded text-sm">🍟 Batata na airfryer</div>
-                            <div class="text-xs text-gray-500 mt-2">🌛 Digestão tranquila</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🥗 Salada caprichada</div>
+                            <div class="food-item p-2 rounded text-xs">🥚 Ovos mexidos</div>
+                            <div class="food-item p-2 rounded text-xs">🍟 Batata na airfryer</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🌛 Digestão tranquila</div>
                     </div>
                 </div>
             </div>
 
             <!-- Quinta-feira -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-                    🏢 Quinta-feira - Presencial
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
+                    🏢 Quinta - Presencial
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <!-- Café da Manhã -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #f59e0b;">
-                        <h3 class="font-semibold text-amber-600 mb-3 flex items-center">
-                            ☕ Café da Manhã (6:30-7:00)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #f59e0b;">
+                        <h3 class="font-medium text-amber-600 mb-2 text-sm">
+                            ☕ Café (6:30-7:00)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Pão + queijo + presunto</div>
-                            <div class="food-item p-2 rounded text-sm">🥣 Cereal com leite</div>
-                            <div class="food-item p-2 rounded text-sm">🍌 Banana</div>
-                            <div class="text-xs text-gray-500 mt-2">🚀 Energia duradoura</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Pão + queijo + presunto</div>
+                            <div class="food-item p-2 rounded text-xs">🥣 Cereal com leite</div>
+                            <div class="food-item p-2 rounded text-xs">🍌 Banana</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🚀 Energia duradoura</div>
                     </div>
 
                     <!-- Lanche da Tarde -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #10b981;">
-                        <h3 class="font-semibold text-green-600 mb-3 flex items-center">
-                            🎒 Lanche da Tarde (16:00-17:30)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #10b981;">
+                        <h3 class="font-medium text-green-600 mb-2 text-sm">
+                            🎒 Lanche (16:00-17:30)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🥪 Sanduíche natural (restaurante)</div>
-                            <div class="food-item p-2 rounded text-sm">🍎 Maçã (levar)</div>
-                            <div class="food-item p-2 rounded text-sm">☕ Café</div>
-                            <div class="text-xs text-gray-500 mt-2">💼 Pausa corporativa</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🥪 Sanduíche natural (restaurante)</div>
+                            <div class="food-item p-2 rounded text-xs">🍎 Maçã (levar)</div>
+                            <div class="food-item p-2 rounded text-xs">☕ Café</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">💼 Pausa corporativa</div>
                     </div>
 
                     <!-- Jantar -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #8b5cf6;">
-                        <h3 class="font-semibold text-purple-600 mb-3 flex items-center">
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #8b5cf6;">
+                        <h3 class="font-medium text-purple-600 mb-2 text-sm">
                             🌙 Jantar (20:45-21:15)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍗 Frango desfiado</div>
-                            <div class="food-item p-2 rounded text-sm">🥗 Salada mista</div>
-                            <div class="food-item p-2 rounded text-sm">🍠 Batata doce</div>
-                            <div class="text-xs text-gray-500 mt-2">💪 Proteína para recuperação</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍗 Frango desfiado</div>
+                            <div class="food-item p-2 rounded text-xs">🥗 Salada mista</div>
+                            <div class="food-item p-2 rounded text-xs">🍠 Batata doce</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">💪 Proteína para recuperação</div>
                     </div>
                 </div>
             </div>
 
             <!-- Sexta-feira -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
-                    🎉 Sexta-feira - Home Office
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
+                    🎉 Sexta - Home Office
                 </h2>
                 
-                <div class="grid md:grid-cols-3 gap-6">
+                <div class="space-y-4">
                     <!-- Café da Manhã -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #f59e0b;">
-                        <h3 class="font-semibold text-amber-600 mb-3 flex items-center">
-                            ☕ Café da Manhã (6:30-7:00)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #f59e0b;">
+                        <h3 class="font-medium text-amber-600 mb-2 text-sm">
+                            ☕ Café (6:30-7:00)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🍞 Torrada + requeijão + peito de peru</div>
-                            <div class="food-item p-2 rounded text-sm">🥚 Ovo mexido</div>
-                            <div class="food-item p-2 rounded text-sm">🍊 Suco de laranja</div>
-                            <div class="text-xs text-gray-500 mt-2">🎊 Energia para finalizar semana</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🍞 Torrada + requeijão + peito de peru</div>
+                            <div class="food-item p-2 rounded text-xs">🥚 Ovo mexido</div>
+                            <div class="food-item p-2 rounded text-xs">🍊 Suco de laranja</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🎊 Energia para finalizar semana</div>
                     </div>
 
                     <!-- Lanche da Tarde -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #10b981;">
-                        <h3 class="font-semibold text-green-600 mb-3 flex items-center">
-                            🥗 Lanche da Tarde (16:30-17:30)
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #10b981;">
+                        <h3 class="font-medium text-green-600 mb-2 text-sm">
+                            🥗 Lanche (16:30-17:30)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🥑 Abacate com granola</div>
-                            <div class="food-item p-2 rounded text-sm">🍞 Biscoito + queijo</div>
-                            <div class="food-item p-2 rounded text-sm">🥤 Vitamina de fruta</div>
-                            <div class="text-xs text-gray-500 mt-2">🎉 Celebrando o fim de semana</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🥑 Abacate com granola</div>
+                            <div class="food-item p-2 rounded text-xs">🍞 Biscoito + queijo</div>
+                            <div class="food-item p-2 rounded text-xs">🥤 Vitamina de fruta</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🎉 Celebrando o fim de semana</div>
                     </div>
 
                     <!-- Jantar -->
-                    <div class="meal-card p-4 rounded-lg" style="border-left-color: #8b5cf6;">
-                        <h3 class="font-semibold text-purple-600 mb-3 flex items-center">
+                    <div class="meal-card p-3 rounded-lg" style="border-left-color: #8b5cf6;">
+                        <h3 class="font-medium text-purple-600 mb-2 text-sm">
                             🌙 Jantar (20:45-21:15)
                         </h3>
-                        <div class="space-y-2">
-                            <div class="food-item p-2 rounded text-sm">🥗 Salada especial</div>
-                            <div class="food-item p-2 rounded text-sm">🍗 Filé de frango</div>
-                            <div class="food-item p-2 rounded text-sm">🍟 Batata na airfryer</div>
-                            <div class="text-xs text-gray-500 mt-2">🎊 Jantar de sexta-feira</div>
+                        <div class="space-y-1">
+                            <div class="food-item p-2 rounded text-xs">🥗 Salada especial</div>
+                            <div class="food-item p-2 rounded text-xs">🍗 Filé de frango</div>
+                            <div class="food-item p-2 rounded text-xs">🍟 Batata na airfryer</div>
                         </div>
+                        <div class="text-xs text-gray-500 mt-2">🎊 Jantar de sexta-feira</div>
                     </div>
                 </div>
             </div>
 
             <!-- Fim de Semana -->
-            <div class="day-section bg-white rounded-lg shadow-sm p-6">
-                <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-3">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <h2 class="text-lg font-bold mb-4 border-b pb-2">
                     🏖️ Fim de Semana - Flexível
                 </h2>
                 
